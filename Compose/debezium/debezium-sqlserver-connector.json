@@ -1,0 +1,22 @@
+{
+    "name": "sqlserver-connector",
+    "config": {
+      "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+      "database.hostname": "sqlserver",
+      "database.port": "1433",
+      "database.user": "sa",
+      "database.password": "Salman#2241371",
+      "database.names": "DebeziumDb",
+      "database.server.name": ".",
+      "table.include.list": "dbo.Student",
+      "database.history.kafka.bootstrap.servers": "kafka:9092",
+      "database.history.kafka.topic": "schema-changes.DebeziumDb",
+      "topic.prefix": "test",
+      "database.encrypt": "true",
+      "database.trustServerCertificate": "true",
+      "schema.history.internal.kafka.bootstrap.servers": "kafka:9092",  
+      "schema.history.internal.kafka.topic": "schema-changes.student"
+    }
+  }
+  
+  

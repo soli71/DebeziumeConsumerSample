@@ -1,0 +1,1 @@
+docker-compose -f kafkaui.yaml -p kafka  up -d
