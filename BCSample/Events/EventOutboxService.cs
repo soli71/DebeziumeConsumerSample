@@ -1,27 +1,12 @@
 ﻿using Avro;
 using BCSample.Data;
-using BCSample.Partials;
 using Confluent.SchemaRegistry;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace BCSample.Events
 {
-    public class LoginActionEventSchema
-    {
-        // Avro schema definition
-        private static readonly string SchemaJson = @"{
-        ""type"": ""record"",
-        ""name"": ""LoginActionEvent"",
-        ""namespace"": ""BCSample.Events"",
-        ""fields"": [
-            { ""name"": ""UserName"", ""type"": ""string"" },
-            { ""name"": ""LoginTime"", ""type"": { ""type"": ""long"", ""logicalType"": ""timestamp-millis"" }}
-        ]
-    }";
 
-        public static RecordSchema Schema => (RecordSchema)RecordSchema.Parse(SchemaJson);
-    }
     public class EventOutboxService : IEventOutboxService
     {
         private readonly ISchemaRegistryClient _schemaRegistryClient;
@@ -57,7 +42,7 @@ namespace BCSample.Events
             try
             {
                 var subject = $"{topic}-value";
-                var schema = LoginActionEventSchema.Schema.ToString();
+                var schema = LoginActionEvent._SCHEMA.ToString();
 
                 var registeredSchema = await _schemaRegistryClient.RegisterSchemaAsync(subject, schema);
 

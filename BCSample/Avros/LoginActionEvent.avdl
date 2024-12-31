@@ -1,7 +1,7 @@
-@namesapace("BCSample.Partials")
+@namespace("BCSample.Events")
 protocol LoginActionEvent {
-  record LoginAction {
-	string username;
-	string password;
+  record LoginActionEvent {
+    string username;
+    string loginTime;
   }
 }

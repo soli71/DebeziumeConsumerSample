@@ -1,7 +1,4 @@
-﻿
-using BCSample.Partials;
-
-namespace BCSample.Events
+﻿namespace BCSample.Events
 {
     public interface IEventOutboxService
     {

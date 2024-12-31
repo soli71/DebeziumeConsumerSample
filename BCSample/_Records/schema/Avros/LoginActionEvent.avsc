@@ -1,11 +1,12 @@
 {
   "type" : "record",
-  "name" : "LoginAction",
+  "name" : "LoginActionEvent",
+  "namespace" : "BCSample.Events",
   "fields" : [ {
     "name" : "username",
     "type" : "string"
   }, {
-    "name" : "password",
+    "name" : "loginTime",
     "type" : "string"
   } ]
 }

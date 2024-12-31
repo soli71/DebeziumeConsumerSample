@@ -1,12 +1,12 @@
 ﻿using Avro;
 
-namespace BCSample.Partials
+namespace BCSample.Events
 {
 
     public partial class LoginActionEvent
     {
         public string UserName { get; set; }
-        public DateTime LoginTime { get; set; }
+        public string LoginTime { get; set; }
 
     }
 
