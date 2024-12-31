@@ -1,0 +1,7 @@
+@namesapace("BCSample.Partials")
+protocol LoginActionEvent {
+  record LoginAction {
+	string username;
+	string password;
+  }
+}

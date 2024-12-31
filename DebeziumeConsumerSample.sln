@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35605.110 d17.13
+VisualStudioVersion = 17.13.35605.110
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebeziumeConsumerSample", "DebeziumeConsumerSample\DebeziumeConsumerSample.csproj", "{F3A9B112-8ED1-45E2-8CEF-9684A9E87103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCSample", "BCSample\BCSample.csproj", "{B1474F14-F573-4E9E-B468-75E92CD989C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F3A9B112-8ED1-45E2-8CEF-9684A9E87103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3A9B112-8ED1-45E2-8CEF-9684A9E87103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3A9B112-8ED1-45E2-8CEF-9684A9E87103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1474F14-F573-4E9E-B468-75E92CD989C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1474F14-F573-4E9E-B468-75E92CD989C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1474F14-F573-4E9E-B468-75E92CD989C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1474F14-F573-4E9E-B468-75E92CD989C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

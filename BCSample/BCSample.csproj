@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Apache.Avro" Version="1.12.0" />
+    <PackageReference Include="Confluent.SchemaRegistry" Version="2.6.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Avros\" />
+  </ItemGroup>
+
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -ExecutionPolicy ByPass -File Generate.ps1" />
+		<ItemGroup>
+			<Compile Include="$(ProjectDir)/_Records/**/*$(DefaultLanguageSourceExtension)" Exclude="@(Compile)" />
+		</ItemGroup>
+	</Target>
+	
+	<ItemGroup>
+		<PackageReference Include="Confluent.SchemaRegistry.Serdes.Avro" Version="2.3.0" />
+	</ItemGroup>
+</Project>
