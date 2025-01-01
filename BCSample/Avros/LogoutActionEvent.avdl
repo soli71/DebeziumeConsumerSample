@@ -1,0 +1,7 @@
+﻿@namespace("BCSample.Events")
+protocol LogoutActionEvent {
+  record LogoutActionEvent {
+	string Username;
+	string LogoutTime;
+  }
+}

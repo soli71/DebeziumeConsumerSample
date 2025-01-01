@@ -16,10 +16,11 @@ namespace BCSample.Events
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("avrogen", "1.12.0+8c27801dc8d42ccc00997f25c0b8f45f8d4a233e")]
 	public partial class LoginActionEvent : global::Avro.Specific.ISpecificRecord
 	{
-		public static global::Avro.Schema _SCHEMA = global::Avro.Schema.Parse("{\"type\":\"record\",\"name\":\"LoginActionEvent\",\"namespace\":\"BCSample.Events\",\"fields\"" +
-				":[{\"name\":\"username\",\"type\":\"string\"},{\"name\":\"loginTime\",\"type\":\"string\"}]}");
-		private string _username;
-		private string _loginTime;
+		public static global::Avro.Schema _SCHEMA = global::Avro.Schema.Parse(@"{""type"":""record"",""name"":""LoginActionEvent"",""namespace"":""BCSample.Events"",""fields"":[{""name"":""Username"",""type"":""string""},{""name"":""LoginTime"",""type"":""string""},{""name"":""IpAddress"",""default"":"""",""type"":""string""},{""name"":""UserAgent"",""default"":"""",""type"":""string""}]}");
+		private string _Username;
+		private string _LoginTime;
+		private string _IpAddress;
+		private string _UserAgent;
 		public virtual global::Avro.Schema Schema
 		{
 			get
@@ -27,34 +28,58 @@ namespace BCSample.Events
 				return LoginActionEvent._SCHEMA;
 			}
 		}
-		public string username
+		public string Username
 		{
 			get
 			{
-				return this._username;
+				return this._Username;
 			}
 			set
 			{
-				this._username = value;
+				this._Username = value;
 			}
 		}
-		public string loginTime
+		public string LoginTime
 		{
 			get
 			{
-				return this._loginTime;
+				return this._LoginTime;
 			}
 			set
 			{
-				this._loginTime = value;
+				this._LoginTime = value;
+			}
+		}
+		public string IpAddress
+		{
+			get
+			{
+				return this._IpAddress;
+			}
+			set
+			{
+				this._IpAddress = value;
+			}
+		}
+		public string UserAgent
+		{
+			get
+			{
+				return this._UserAgent;
+			}
+			set
+			{
+				this._UserAgent = value;
 			}
 		}
 		public virtual object Get(int fieldPos)
 		{
 			switch (fieldPos)
 			{
-			case 0: return this.username;
-			case 1: return this.loginTime;
+			case 0: return this.Username;
+			case 1: return this.LoginTime;
+			case 2: return this.IpAddress;
+			case 3: return this.UserAgent;
 			default: throw new global::Avro.AvroRuntimeException("Bad index " + fieldPos + " in Get()");
 			};
 		}
@@ -62,8 +87,10 @@ namespace BCSample.Events
 		{
 			switch (fieldPos)
 			{
-			case 0: this.username = (System.String)fieldValue; break;
-			case 1: this.loginTime = (System.String)fieldValue; break;
+			case 0: this.Username = (System.String)fieldValue; break;
+			case 1: this.LoginTime = (System.String)fieldValue; break;
+			case 2: this.IpAddress = (System.String)fieldValue; break;
+			case 3: this.UserAgent = (System.String)fieldValue; break;
 			default: throw new global::Avro.AvroRuntimeException("Bad index " + fieldPos + " in Put()");
 			};
 		}

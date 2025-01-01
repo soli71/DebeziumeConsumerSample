@@ -3,10 +3,18 @@
   "name" : "LoginActionEvent",
   "namespace" : "BCSample.Events",
   "fields" : [ {
-    "name" : "username",
+    "name" : "Username",
     "type" : "string"
   }, {
-    "name" : "loginTime",
+    "name" : "LoginTime",
     "type" : "string"
+  }, {
+    "name" : "IpAddress",
+    "type" : "string",
+    "default" : ""
+  }, {
+    "name" : "UserAgent",
+    "type" : "string",
+    "default" : ""
   } ]
 }

@@ -1,7 +1,9 @@
 @namespace("BCSample.Events")
 protocol LoginActionEvent {
   record LoginActionEvent {
-    string username;
-    string loginTime;
+    string Username;
+    string LoginTime;
+    string IpAddress="";
+    string UserAgent="";
   }
 }

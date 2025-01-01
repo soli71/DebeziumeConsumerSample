@@ -1,0 +1,43 @@
+
+{
+	"name": "sql-sample-outbox-connector-1",
+	"config": {
+		"connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+		
+		"database.server.name": "server1",
+		"database.hostname": "sqlserver",
+		"database.port": "1433",
+		"database.user": "sa",
+		"database.password": "Password!",
+		"database.names": "OutboxCDC",
+		"database.encrypt": "false",
+		
+		"topic.prefix": "server1",
+		"schema.history.internal.kafka.bootstrap.servers": "broker:9092",
+		"schema.history.internal.kafka.topic": "OutboxCDC.schema.changes",
+		"database.history.kafka.bootstrap.servers": "broker:9092",
+		"database.history.kafka.topic": "OutboxCDC.database.history",
+		
+		"skipped.operations": "d,u,t",		
+		
+	    "transforms": "outbox",
+	    "transforms.outbox.type": "io.debezium.transforms.outbox.EventRouter",
+	    "transforms.outbox.table.field.event.id": "Id",
+	    "transforms.outbox.table.field.event.key": "Key",
+	    "transforms.outbox.route.by.field": "EventType",
+	    "transforms.outbox.table.field.event.payload": "Payload",
+	    "transforms.outbox.route.topic.replacement": "${routedByValue}",
+
+		"value.converter.schemas.enable": "false",
+		
+		"schema.registry.url": "http://schema-registry:8081",
+		"key.converter.schema.registry.url": "http://schema-registry:8081",
+		"value.converter.schema.registry.url": "http://schema-registry:8081",
+
+		"key.converter": "io.confluent.connect.avro.AvroConverter",
+		"value.converter": "io.debezium.converters.BinaryDataConverter",
+		
+		"value.converter.delegate.converter.type": "org.apache.kafka.connect.json.JsonConverter",
+		"value.converter.delegate.converter.type.schemas.enable": "false"
+	}
+}

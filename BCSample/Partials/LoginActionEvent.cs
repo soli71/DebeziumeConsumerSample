@@ -1,14 +1,14 @@
 ﻿using Avro;
+using Avro.Specific;
 
 namespace BCSample.Events
 {
-
-    public partial class LoginActionEvent
+    public interface IEvent: ISpecificRecord
     {
-        public string UserName { get; set; }
-        public string LoginTime { get; set; }
+    }
+    public partial class LoginActionEvent: IEvent
+    {
 
     }
-
 }
 
