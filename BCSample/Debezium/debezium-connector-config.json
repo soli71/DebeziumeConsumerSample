@@ -11,6 +11,7 @@
 		"database.password": "Password!",
 		"database.names": "OutboxCDC",
 		"database.encrypt": "false",
+		"table.include.list": "dbo.Outbox",
 		
 		"topic.prefix": "server1",
 		"schema.history.internal.kafka.bootstrap.servers": "broker:9092",

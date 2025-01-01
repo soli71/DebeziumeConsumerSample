@@ -12,7 +12,8 @@
 
         public Outbox(string key,string eventType,string payload,int schemaId)
         {
-            this.EventType = eventType;
+            EventType = eventType;
+            Key=key;
             Payload = payload;
             SchemaId = schemaId;
             CreatedAt = DateTime.Now.ToString();
