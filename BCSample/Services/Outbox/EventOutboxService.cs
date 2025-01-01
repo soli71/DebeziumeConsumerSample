@@ -1,6 +1,10 @@
-﻿using BCSample.Data;
+﻿using Avro;
+using Avro.IO;
+using Avro.Specific;
+using BCSample.Data;
 using BCSample.Events;
 using BCSample.Services.SchemaRegistry;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace BCSample.Services.Outbox
@@ -23,8 +27,12 @@ namespace BCSample.Services.Outbox
 
             var schemaId = await _schemaRegistryService.RegisterSchemaAsync(eventData);
 
-
-            var jsonPayload = JsonSerializer.Serialize(eventData);
+            using var memoryStream = new MemoryStream();
+            var encoder = new BinaryEncoder(memoryStream);
+            var writer = new SpecificDatumWriter<IEvent>(eventData.Schema);
+            writer.Write(eventData, encoder);
+            var jsonPayload = Convert.ToBase64String(memoryStream.ToArray());
+       
 
 
             var outboxMessage = new BCSample.Data.Outbox(
@@ -36,6 +44,8 @@ namespace BCSample.Services.Outbox
 
 
             await SaveToOutboxAsync(outboxMessage);
+
+            await ReadEventFromOutboxAsync(4);
         }
 
 
@@ -51,6 +61,33 @@ namespace BCSample.Services.Outbox
             {
                 throw new Exception("Failed to save to outbox", ex);
             }
+        }
+
+
+        public async Task<IEvent?> ReadEventFromOutboxAsync(long messageId)
+        {
+         
+            var outboxMessage = await _dbContext.Outbox
+                .FirstOrDefaultAsync(o => o.Id == messageId);
+
+            if (outboxMessage == null)
+                throw new Exception($"Outbox message with ID {messageId} not found.");
+
+      
+            var schema = await _schemaRegistryService.GetSchemaByIdAsync(outboxMessage.SchemaId);
+
+        
+            var readerSchema = Schema.Parse(schema);
+            var datumReader = new SpecificDatumReader<LoginActionEvent>(readerSchema, readerSchema);
+
+   
+            var payloadBytes = Convert.FromBase64String(outboxMessage.Payload);
+            using var memoryStream = new MemoryStream(payloadBytes);
+            var decoder = new BinaryDecoder(memoryStream);
+
+            var @event = datumReader.Read(null, decoder) as IEvent;
+
+            return @event;
         }
     }
 }

@@ -105,6 +105,11 @@ namespace BCSample.Services.SchemaRegistry
                 throw new Exception("Failed to register schema", ex);
             }
         }
+        public async Task<string> GetSchemaByIdAsync(int schemaId)
+        {
+            var result = await _schemaRegistryClient.GetSchemaAsync(schemaId);
+            return result;
+        }
     }
 }
 

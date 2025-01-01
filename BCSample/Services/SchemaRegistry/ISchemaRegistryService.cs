@@ -15,6 +15,7 @@ namespace BCSample.Services.SchemaRegistry
         Task<List<string>> GetAllSubjectAsync();
         Task<List<int>> GetSubjectVersions(string subject);
         Task<int> RegisterSchemaAsync(IEvent @event);
+        Task<string> GetSchemaByIdAsync(int schemaId);
     }
 }
 
